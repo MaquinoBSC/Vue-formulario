@@ -4,20 +4,20 @@
     <Input :tarea="tarea" />
   </form>
   <hr>
-  <p>
-    {{tarea}}
-  </p>
+  <ListaTareas />
 </template>
 
 <script>
 const shortid= require('shortid');
-import Input from '../components/Input.vue';
 import {mapActions} from 'vuex';
+import Input from '../components/Input.vue';
+import ListaTareas from '../components/ListaTareas.vue';
 
 export default {
   name: 'Home',
   components: {
-    Input
+    Input,
+    ListaTareas,
   },
   data(){
     return{
@@ -44,8 +44,9 @@ export default {
       //Enviar datos a Vuex
       this.setTareas(this.tarea);
 
-      
+      //Limpiar datos
       this.tarea= {
+        id: '',
         nombre: '',
         categorias: [],
         estado: '',
