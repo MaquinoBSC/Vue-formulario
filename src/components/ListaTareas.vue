@@ -16,9 +16,9 @@
                 <th scope="row">{{tarea.id}}</th>
                 <td>{{tarea.nombre}}</td>
                 <td>
-                    <template v-for="(categoria, index) in tarea.categorias" :key="index">
-                        <p>{{categoria}}</p>
-                    </template>
+                   <span v-for="(categoria, index) in tarea.categorias" :key="index">
+                       {{tarea.categorias.length === index + 1 ? categoria : categoria + ', '}}
+                   </span>
                 </td>
                 <td>{{tarea.estado}}</td>
                 <td>{{tarea.numero}}</td>
