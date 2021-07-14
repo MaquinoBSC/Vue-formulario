@@ -24,7 +24,14 @@
                 <td>{{tarea.estado}}</td>
                 <td>{{tarea.numero}}</td>
                 <td>
-                    <button class="btn btn-warning mx-2">Editar</button>
+                    <router-link 
+                        :to="{
+                            name: 'Editar', 
+                            params: {
+                                id: tarea.id
+                            }
+                        }" 
+                        class="btn btn-warning mx-2">Editar</router-link>
                     <button 
                         class="btn btn-danger mx-2"
                         @click="deleteTarea(tarea.id)"
