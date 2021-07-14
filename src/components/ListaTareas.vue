@@ -25,7 +25,12 @@
                 <td>{{tarea.numero}}</td>
                 <td>
                     <button class="btn btn-warning mx-2">Editar</button>
-                    <button class="btn btn-danger mx-2">Eliminar</button>
+                    <button 
+                        class="btn btn-danger mx-2"
+                        @click="deleteTarea(tarea.id)"
+                    >
+                        Eliminar
+                    </button>
                 </td>
             </tr>
         </tbody>
@@ -33,10 +38,13 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import {mapState, mapActions} from 'vuex';
 export default {
     computed: {
         ...mapState(['tareas'])
+    },
+    methods: {
+        ...mapActions(['deleteTarea'])
     }
 }
 </script>
