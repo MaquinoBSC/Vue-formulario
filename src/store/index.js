@@ -13,14 +13,18 @@ export default createStore({
     }
   },
   mutations: {
+    cargar(state, payload){
+      state.tareas= payload;
+    },
     set(state, payload){
       state.tareas.push(payload);
-      console.log(state.tareas);
+      localStorage.setItem('tareas', JSON.stringify(state.tareas));
     },
     eliminar(state, payload){
       state.tareas= state.tareas.filter((tarea)=> {
         return tarea.id !== payload;
       })
+      localStorage.setItem('tareas', JSON.stringify(state.tareas));
     },
     get(state, payload){
       if(!state.tareas.find((tarea)=> tarea.id === payload)){//Validacion por si el id no existe
@@ -35,10 +39,20 @@ export default createStore({
       state.tareas= state.tareas.map((tarea)=> {
         return tarea.id == payload.id ? payload : tarea;
       });
+      localStorage.setItem('tareas', JSON.stringify(state.tareas));
       router.push('/');
     }
   },
   actions: {
+    cargarLocalStorage({commit}){
+      if(localStorage.getItem('tareas')){
+        const tareas= JSON.parse(localStorage.getItem('tareas'))
+        commit('cargar', tareas)
+        return
+      }
+
+      localStorage.setItem('tareas', JSON.stringify([]));
+    },
     setTareas({commit}, tarea){
       commit('set', tarea)
     },
