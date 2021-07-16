@@ -84,7 +84,7 @@ export default createStore({
         commit('eliminar', id)
 
       } catch (error) {
-        console.log(error);
+        console.log(error); 
       }
     },
     setTarea({commit}, id){
