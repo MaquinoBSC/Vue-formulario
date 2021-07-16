@@ -1,5 +1,4 @@
 <template>
-{{tareas}}
     <table class="table table-striped table-dark">
         <thead>
             <tr>
