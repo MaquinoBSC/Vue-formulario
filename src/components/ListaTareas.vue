@@ -15,7 +15,7 @@
                 <th scope="row">{{tarea.id}}</th>
                 <td>{{tarea.nombre}}</td>
                 <td>
-                    <span>{{tarea.categorias.join(', ')}}</span>
+                    <span>{{tarea.categorias ? tarea.categorias.join(', ') : null}}</span>
                    <!-- <span v-for="(categoria, index) in tarea.categorias" :key="index">
                        {{tarea.categorias.length === index + 1 ? categoria : categoria + ', '}}
                    </span> -->
