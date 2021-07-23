@@ -93,9 +93,9 @@ export default createStore({
         console.log(error);
       }
     },
-    async cargarLocalStorage({commit}){
+    async cargarLocalStorage({commit, state}){
       try {
-        const res= await fetch(`https://vue-formulario-885d5-default-rtdb.firebaseio.com/tareas.json`)
+        const res= await fetch(`https://vue-formulario-885d5-default-rtdb.firebaseio.com/tareas/${state.user.localId}.json?auth=${state.user.idToken}`)
         const dataDB= await res.json();
         const arrayTareas= [];
         
@@ -109,9 +109,9 @@ export default createStore({
         console.log(error);
       }
     },
-    async setTareas({commit}, tarea){
+    async setTareas({commit, state}, tarea){
       try {
-        const res= await fetch(`https://vue-formulario-885d5-default-rtdb.firebaseio.com/tareas/${tarea.id}.json`, {
+        const res= await fetch(`https://vue-formulario-885d5-default-rtdb.firebaseio.com/tareas/${state.user.localId}/${tarea.id}.json?auth=${state.user.idToken}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -128,9 +128,9 @@ export default createStore({
 
       commit('set', tarea)
     },
-    async deleteTarea({commit}, id){
+    async deleteTarea({commit, state}, id){
       try {
-        await fetch(`https://vue-formulario-885d5-default-rtdb.firebaseio.com/tareas/${id}.json`, {
+        await fetch(`https://vue-formulario-885d5-default-rtdb.firebaseio.com/tareas/${state.user.localId}/${id}.json?auth=${state.user.idToken}`, {
           method: 'DELETE',
         })
         commit('eliminar', id)
@@ -142,9 +142,9 @@ export default createStore({
     setTarea({commit}, id){
       commit('get', id)
     },
-    async updateTarea({commit}, tarea){
+    async updateTarea({commit, state}, tarea){
       try {
-        const res= await fetch(`https://vue-formulario-885d5-default-rtdb.firebaseio.com/tareas/${tarea.id}.json`, {
+        const res= await fetch(`https://vue-formulario-885d5-default-rtdb.firebaseio.com/tareas/${state.user.localId}/${tarea.id}.json?auth=${state.user.idToken}`, {
           method: 'PATCH',
           body: JSON.stringify(tarea)
         })

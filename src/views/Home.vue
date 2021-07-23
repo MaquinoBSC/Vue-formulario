@@ -19,6 +19,9 @@ export default {
     Input,
     ListaTareas,
   },
+  created(){
+    this.cargarLocalStorage();
+  },
   data(){
     return{
       tarea: {
@@ -31,7 +34,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setTareas']),
+    ...mapActions(['setTareas', 'cargarLocalStorage']),
     procesarFormulario(){
       if(this.tarea.nombre.trim() === ""){
         console.log("Campo vacio");
