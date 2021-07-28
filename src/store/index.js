@@ -157,6 +157,11 @@ export default createStore({
       }
     }
   },
+  getters: {
+    usuarioAutenticado(state){
+      return !!state.user  //si es null retorna false de lo contrario true
+    }
+  },
   modules: {
   }
 })
