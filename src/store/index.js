@@ -48,6 +48,7 @@ export default createStore({
     cerrarSesion({commit}){
       commit('setUser', null);
       router.push('/ingreso');
+      localStorage.removeItem('usuario');
     },
     async ingresoUser({commit}, user){
       try {
@@ -69,6 +70,7 @@ export default createStore({
 
         commit('setUser', userDB)
         router.push('/');
+        localStorage.setItem('usuario', JSON.stringify(userDB));
 
       } catch (error) {
         console.log(error);
@@ -92,12 +94,21 @@ export default createStore({
         }
         commit('setUser', userDB)
         router.push('/');
+        localStorage.setItem('usuario', JSON.stringify(userDB));
         
       } catch (error) {
         console.log(error);
       }
     },
     async cargarLocalStorage({commit, state}){
+      if(localStorage.getItem('usuario')){
+        commit('setUser', JSON.parse(localStorage.getItem('usuario')))
+      }
+      else{
+        return commit('setUser', null)
+      }
+
+
       try {
         const res= await fetch(`https://vue-formulario-885d5-default-rtdb.firebaseio.com/tareas/${state.user.localId}.json?auth=${state.user.idToken}`)
         const dataDB= await res.json();

@@ -12,13 +12,13 @@ const routes = [
   {
     path: '/editar/:id',
     name: 'Editar',
-    component: () => import('../views/Editar.vue')
+    component: () => import('../views/Editar.vue'),
+    meta: {rutaProtegida: true}
   },
   {
     path: '/registro',
     name: 'Registro',
     component: ()=> import('../views/Registro.vue'),
-    meta: {rutaProtegida: true}
   },
   {
     path: '/ingreso',

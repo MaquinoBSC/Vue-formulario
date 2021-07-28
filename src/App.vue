@@ -13,6 +13,9 @@ export default {
   components: {
     Navbar
   },
+  created(){
+    this.cargarLocalStorage();
+  },
   methods: {
     ...mapActions(['cargarLocalStorage'])
   }
