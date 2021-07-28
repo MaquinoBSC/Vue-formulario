@@ -28,6 +28,7 @@
           <button 
             v-if="usuarioAutenticado"
             class="btn btn-info mx-2"
+            @click="cerrarSesion()"
           >
             Cerrar Sesion
           </button>
@@ -36,12 +37,15 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 
 export default {
   computed: {
     ...mapGetters(['usuarioAutenticado'])
+  },
+  methods: {
+    ...mapActions(['cerrarSesion'])
   }
 }
 </script>
