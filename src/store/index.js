@@ -22,11 +22,13 @@ export default createStore({
     },
     set(state, payload){
       state.tareas.push(payload);
+      localStorage.setItem('tareas', JSON.stringify(state.tareas));
     },
     eliminar(state, payload){
       state.tareas= state.tareas.filter((tarea)=> {
         return tarea.id !== payload;
       })
+      localStorage.setItem('tareas', JSON.stringify(state.tareas));
     },
     get(state, payload){
       if(!state.tareas.find((tarea)=> tarea.id === payload)){//Validacion por si el id no existe
@@ -41,6 +43,7 @@ export default createStore({
       state.tareas= state.tareas.map((tarea)=> {
         return tarea.id == payload.id ? payload : tarea;
       });
+      localStorage.setItem('tareas', JSON.stringify(state.tareas));
       router.push('/');
     }
   },

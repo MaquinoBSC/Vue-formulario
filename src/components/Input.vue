@@ -23,7 +23,11 @@
         v-model="tarea.categorias"
         value="nodejs"
         >
+<<<<<<< HEAD
         <label for="check-2" class="form-check-label">Node JS</label>
+=======
+        <label for="check-2" class="form-check-label">Nose JS</label>
+>>>>>>> d186936a94fa45355f40c33a21c1f86dc069182d
     </div>
     <div class="mt-2">
         <div class="form-check form-check-inline">

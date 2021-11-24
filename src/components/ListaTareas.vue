@@ -1,4 +1,8 @@
 <template>
+<<<<<<< HEAD
+=======
+{{tareas}}
+>>>>>>> d186936a94fa45355f40c33a21c1f86dc069182d
     <table class="table table-striped table-dark">
         <thead>
             <tr>
@@ -15,7 +19,11 @@
                 <th scope="row">{{tarea.id}}</th>
                 <td>{{tarea.nombre}}</td>
                 <td>
+<<<<<<< HEAD
                     <span>{{tarea.categorias ? tarea.categorias.join(', ') : null}}</span>
+=======
+                    <span>{{tarea.categorias.join(', ')}}</span>
+>>>>>>> d186936a94fa45355f40c33a21c1f86dc069182d
                    <!-- <span v-for="(categoria, index) in tarea.categorias" :key="index">
                        {{tarea.categorias.length === index + 1 ? categoria : categoria + ', '}}
                    </span> -->
