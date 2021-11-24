@@ -1,17 +1,23 @@
 <template>
-  <h1 class="my-5">Ingreso de usuarios</h1>
-  <form @submit.prevent="procesarFormulario()">
+    <h1 class="my-5">Ingreso de usuarios</h1>
+    <div class="alert alert-danger" v-if="error.tipo !== null">
+        {{ error.mensaje }}
+    </div>
+
+    <form @submit.prevent="procesarFormulario()">
         <input 
             type="email" 
             placeholder="Email"
             class="form-control my-2"
             v-model.trim="email"
+            :class="[error.tipo === 'email' ? 'is-invalid' : '' ]"
         >
         <input 
             type="password" 
             placeholder="Password"
             class="form-control my-2"
             v-model.trim="password"
+            :class="[error.tipo === 'password' ? 'is-invalid' : '' ]"
         >
         <button 
             type="submit"
@@ -20,11 +26,11 @@
         >
             Ingresar
         </button>
-  </form>
+    </form>
 </template>
 
 <script>
-import {mapActions} from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
     data(){
@@ -35,8 +41,11 @@ export default {
     },
     methods: {
         ...mapActions(['ingresoUser']),
-        procesarFormulario(){
-            this.ingresoUser({email: this.email, password: this.password});
+        async procesarFormulario(){
+            await this.ingresoUser({email: this.email, password: this.password});
+            if(this.error.tipo !== null){
+                return
+            }
             this.email= "";
             this.password= "";
         }
@@ -50,7 +59,8 @@ export default {
                 return true
             }
             return false
-        }
+        },
+        ...mapState(['error'])
     }
 }
 </script>
