@@ -61,6 +61,10 @@
     >
         Procesar
     </button>
+
+    <hr>
+    <input class="form-control" type="file" id="file" accept=".csv">
+    <button type="button" id="button-getData">Obtener Datos</button>
 </template>
 
 <script>
@@ -69,6 +73,28 @@ export default {
     props: {
         tarea: {
             type: Object
+        }
+    },
+    mounted(){
+        document.getElementById('file').addEventListener('change', (event)=> {
+            const [file]= event.target.files;
+            let fileReader= new FileReader();
+            fileReader.readAsBinaryString(file);
+            fileReader.onload= (e)=> {
+                const headers = e.target.result.slice(0, e.target.result.indexOf("\n")).split(".");
+                const rows = e.target.result.slice(e.target.result.indexOf("\n") + 1).split("\n");
+                const data= rows.map((row)=> row.replace("\r", ""));
+                console.log(headers);
+                console.log(rows);
+                console.log(data);
+            }
+        });
+        document.getElementById('button-getData').addEventListener('click', ()=> {
+            console.log("Gere");
+        })
+    },
+    data(){
+        return{
         }
     },
     computed: {
